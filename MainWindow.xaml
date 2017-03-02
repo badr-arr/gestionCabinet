@@ -1,0 +1,20 @@
+﻿<Window x:Class="Projet.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projet"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="464" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+    <Grid Background="#FFC5C5C5">
+        <TextBox x:Name="email"  HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" Margin="112,91,0,0" Opacity="0.7" Padding="5,5,0,0"/>
+        <Label x:Name="label" Content="Connexion" HorizontalAlignment="Left" Margin="169,41,0,0" VerticalAlignment="Top" Height="36" Width="134" FontSize="22" RenderTransformOrigin="0.5,0.5" Foreground="#FF49494E" FontWeight="Bold"/>
+        <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="112,142,0,0" VerticalAlignment="Top" Width="218" Height="30" Opacity="0.7"/>
+        <Button x:Name="submit" Content="Se connecter" HorizontalAlignment="Left" Margin="112,211,0,0" VerticalAlignment="Top" Width="218" Height="30" Background="#FF282836" Foreground="#FFC9C9C9" BorderBrush="#FF8B8B8B" Opacity="0.9" BorderThickness="1" FontSize="16" Click="submit_Click"/>
+        <Label x:Name="label1" Content="Email:" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top" Width="55" Height="30" FontSize="14"/>
+        <Label x:Name="label2" Content="Mot de passe:" HorizontalAlignment="Left" Margin="10,143,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label x:Name="Erreur" Content="Les données saisies sont incorrectes" HorizontalAlignment="Left" Margin="112,180,0,0" VerticalAlignment="Top" Width="218" Foreground="#FFE00000" FontStyle="Italic"/>
+        <Button x:Name="button" Content="Mot de passe oublié ?" HorizontalAlignment="Left" Margin="292,281,0,0" VerticalAlignment="Top" Width="156" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF282836" Opacity="0.7" FontStyle="Italic" FontSize="13" Click="MotDePasseOublie"/>
+
+    </Grid>
+</Window>

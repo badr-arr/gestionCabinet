@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="projet" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=BADR-PC\SQLEXPRESS;Initial Catalog=projet;Integrated Security=True" SettingsObjectName="Projet.Properties.Settings" SettingsPropertyName="projetConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Table_patient" Member="Table_patient">
+    <Type Name="Table_patient">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="num_dossier" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="num_sante" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="prenom" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="nom" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="cin" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="adresse" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="date_naissance" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="lieu_naissance" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="tel" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="tel_urgence" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="sexe" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="VarChar(90)" CanBeNull="true" />
+      <Column Name="groupe_sanguin" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="situation_familiale" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="assurance" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="Table_patient_RDV" Member="RDV" ThisKey="id" OtherKey="id_patient" Type="RDV" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RDV" Member="RDV">
+    <Type Name="RDV">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id_patient" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="nom_patient" Type="System.String" DbType="Char(20) NOT NULL" CanBeNull="false" />
+      <Column Name="prenom_patient" Type="System.String" DbType="Char(20) NOT NULL" CanBeNull="false" />
+      <Column Name="jour" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="heure" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="VarChar(90)" CanBeNull="true" />
+      <Column Name="statut" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="Table_patient_RDV" Member="Table_patient" ThisKey="id_patient" OtherKey="id" Type="Table_patient" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.login" Member="login">
+    <Type Name="login">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

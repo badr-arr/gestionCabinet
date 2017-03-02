@@ -1,0 +1,576 @@
+﻿<Window x:Class="Projet.Page" Name="PageWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projet"
+        mc:Ignorable="d"
+        Title="Page" Height="705.35" Width="1340.875" WindowStyle="ThreeDBorderWindow" ResizeMode="CanMinimize" ShowInTaskbar="True" Loaded="PageWindow_Loaded" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <local:BDProjetDataSet x:Key="bDProjetDataSet"/>
+        <CollectionViewSource x:Key="table_patientViewSource" Source="{Binding Table_patient, Source={StaticResource bDProjetDataSet}}"/>
+        <CollectionViewSource x:Key="rdvViewSource" Source="{Binding rdv, Source={StaticResource bDProjetDataSet}}"/>
+        <CollectionViewSource x:Key="rapportCPNViewSource" Source="{Binding rapportCPN, Source={StaticResource bDProjetDataSet}}"/>
+        <CollectionViewSource x:Key="rapportCPoNViewSource" Source="{Binding RapportCPoN, Source={StaticResource bDProjetDataSet}}"/>
+        <CollectionViewSource x:Key="rapportJournalierViewSource" Source="{Binding RapportJournalier, Source={StaticResource bDProjetDataSet}}"/>
+    </Window.Resources>
+    <Grid HorizontalAlignment="Left" Width="1331" Background="#FF171717" Margin="0,0,0,-1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="608*"/>
+            <ColumnDefinition Width="55*"/>
+        </Grid.ColumnDefinitions>
+        <Grid HorizontalAlignment="Left" Background="#FFCDCDCD"  Height="677" VerticalAlignment="Top" Width="254">
+        </Grid>
+        <Label x:Name="label1" Content="Navigation" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" Width="70" Foreground="Black" FontFamily="Segoe UI Light"/>
+        <Label x:Name="label2" Content="Composant" HorizontalAlignment="Left" Margin="11,130,0,0" VerticalAlignment="Top" Width="130" Foreground="Black" FontFamily="Segoe UI Light"/>
+        <Button x:Name="Acceuil" Content="Accueil" HorizontalAlignment="Left" Margin="-30,38,0,0" VerticalAlignment="Top" Width="284" Height="30" Background="{x:Null}" Foreground="Black" BorderBrush="{x:Null}" BorderThickness="0" HorizontalContentAlignment="Left" Padding="90,1,1,1" Opacity="0.7" FontSize="14" FontWeight="Bold" Click="Accueil_Click"/>
+        <Button x:Name="Agenda" Content="Agenda" HorizontalAlignment="Left" Margin="-30,73,0,0" VerticalAlignment="Top" Width="284" Height="30" Background="{x:Null}" Foreground="Black" BorderBrush="{x:Null}" BorderThickness="0" HorizontalContentAlignment="Left" Padding="90,1,1,1" Opacity="0.7" FontSize="14" FontWeight="Bold" Click="Agenda_Click"/>
+        <Button x:Name="Patient" Content="Patient" HorizontalAlignment="Left" Margin="-30,161,0,0" VerticalAlignment="Top" Width="284" Height="30" Background="{x:Null}" Foreground="Black" BorderBrush="{x:Null}" BorderThickness="0" HorizontalContentAlignment="Left" Padding="90,1,1,1" Opacity="0.7" Click="patientClick" FontSize="14" FontWeight="Bold"/>
+        <Button x:Name="Parameter" Content="Paramètre du compte" HorizontalAlignment="Left" Margin="-30,301,0,0" VerticalAlignment="Top" Width="284" Height="30" Background="{x:Null}" Foreground="Black" BorderBrush="{x:Null}" BorderThickness="0" HorizontalContentAlignment="Left" Padding="90,1,1,1" Opacity="0.7" FontSize="14" FontWeight="Bold" Click="param_Click"/>
+        <Button x:Name="logout" Content="Deconnexion" HorizontalAlignment="Left" Margin="-30,336,0,0" VerticalAlignment="Top" Width="284" Height="30" Click="Deconnexion"  Background="{x:Null}" Foreground="Black" BorderBrush="{x:Null}" BorderThickness="0" HorizontalContentAlignment="Left" Padding="90,1,1,1" Opacity="0.7" FontSize="14" FontWeight="Bold"/>
+        <Button x:Name="rapportMensuel" Content="Rapport Mensuel CPN" HorizontalAlignment="Left" Margin="-30,196,0,0" VerticalAlignment="Top" Width="284" Height="30" Background="{x:Null}" Foreground="Black" BorderBrush="{x:Null}" BorderThickness="0" HorizontalContentAlignment="Left" Padding="90,1,1,1" Opacity="0.7" FontSize="14" FontWeight="Bold" Click="RapportCPN_Click"/>
+        <Border BorderBrush="#FF8D8D8D" BorderThickness="1" HorizontalAlignment="Left" Height="4" Margin="0,121,0,0" VerticalAlignment="Top" Width="254" Opacity="0.6"/>
+        <Grid HorizontalAlignment="Left" x:Name="param" Margin="244,4,0,-4" Width="1072" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="283*"/>
+                <RowDefinition Height="305*"/>
+            </Grid.RowDefinitions>
+            <Grid HorizontalAlignment="Left" x:Name="ParametreGrid" Height="327" VerticalAlignment="Top" Width="449" Grid.RowSpan="2" Margin="313,120,0,0" Background="#FF2B2B2B" d:IsHidden="True">
+                <TextBox x:Name="Email" HorizontalAlignment="Left" Height="23" Margin="223,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="216"/>
+                <Label x:Name="label3" Content="Email:" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top" Height="23" Width="208" FontFamily="Segoe UI Light" FontSize="14" Foreground="#FFC1C1C1" Padding="5,0,5,5"/>
+                <Label x:Name="label4" Content="Ancien mot de passe:" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top" Height="23" Width="208" FontFamily="Segoe UI Light" FontSize="14" Foreground="#FFC1C1C1" Padding="5,0,5,5"/>
+                <Label x:Name="label5" Content="Nouveau mot de passe:" HorizontalAlignment="Left" Margin="10,161,0,0" VerticalAlignment="Top" Height="23" Width="208" FontFamily="Segoe UI Light" FontSize="14" Foreground="#FFC1C1C1" Padding="5,0,5,5"/>
+                <Label x:Name="label6" Content="Retaper nouveau mot de passe:" HorizontalAlignment="Left" Margin="10,208,0,0" VerticalAlignment="Top" Height="23" Width="208" FontFamily="Segoe UI Light" FontSize="14" Foreground="#FFC1C1C1" Padding="5,0,5,5"/>
+                <Label x:Name="label" Content="Paramètre du compte:" Margin="124,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontFamily="Segoe UI Light" FontSize="20" Foreground="#FFC1C1C1"/>
+                <Button x:Name="ModifierParametre" Content="Enregistrer" HorizontalAlignment="Left" Click="changeParameters" Margin="223,268,0,0" VerticalAlignment="Top" Width="216" Height="23" Background="#FF7EAAF7" Foreground="White" BorderBrush="#FF7EAAF7" FontFamily="Segoe UI Light" FontSize="14"/>
+                <PasswordBox x:Name="oldPassword" HorizontalAlignment="Left" Margin="223,114,0,0" VerticalAlignment="Top" Width="216" Height="23"/>
+                <PasswordBox x:Name="newPassword" HorizontalAlignment="Left" Margin="223,161,0,0" VerticalAlignment="Top" Width="216" Height="23"/>
+                <PasswordBox x:Name="newPasswordVerification" HorizontalAlignment="Left" Margin="223,208,0,0" VerticalAlignment="Top" Width="216" Height="23"/>
+                <Label x:Name="oldPasswordError" Content="Ancien mot de passe incorrect" HorizontalAlignment="Left" Margin="223,237,0,0" VerticalAlignment="Top" Width="216" Foreground="Yellow"/>
+                <Label x:Name="samePasswordError" Content="Les deux mots de passe sont différents" HorizontalAlignment="Left" Margin="223,237,0,0" VerticalAlignment="Top" Width="216" Foreground="Yellow"/>
+                <Label x:Name="ModificationReussi" Content="Modification enregistrée avec succès" HorizontalAlignment="Left" Margin="223,296,0,0" VerticalAlignment="Top" Width="216" Foreground="#FF17FF00"/>
+                <Label x:Name="mailInvalide" Content="Adresse email non valide" HorizontalAlignment="Left" Margin="223,237,0,0" VerticalAlignment="Top" Width="216" Foreground="Yellow"/>
+
+            </Grid>
+            <Grid Name="TablePatient" HorizontalAlignment="Left" Height="605" Margin="26,39,0,0" VerticalAlignment="Top" Width="1036" Grid.RowSpan="2" Background="Black" DataContext="{StaticResource table_patientViewSource}" d:IsHidden="True">
+                <Label x:Name="label10" Content="Liste des patients" HorizontalAlignment="Left" Margin="443,10,0,0" VerticalAlignment="Top" Foreground="White" FontSize="18"/>
+                <DataGrid x:Name="table_patientDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10,98,10,62" RowDetailsVisibilityMode="VisibleWhenSelected" Background="{x:Null}" BorderBrush="{x:Null}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="idColumn" Binding="{Binding id}" Header="id" IsReadOnly="True" Width="SizeToHeader" Visibility="Hidden"/>
+                        <DataGridTextColumn x:Name="num_dossierColumn" Binding="{Binding num_dossier}" Header="N° de dossier" Width="SizeToHeader" CanUserReorder="False" CanUserResize="False" FontSize="14" IsReadOnly="True" MaxWidth="100" MinWidth="100" SortDirection="Ascending"/>
+                        <DataGridTextColumn x:Name="nomColumn" Binding="{Binding nom}" Header="Nom" Width="SizeToHeader" CanUserReorder="False" FontSize="14" IsReadOnly="True" MaxWidth="120" MinWidth="120" SortDirection="Ascending"/>
+                        <DataGridTextColumn x:Name="prenomColumn" Binding="{Binding prenom}" Header="Prénom" Width="SizeToHeader" CanUserReorder="False" FontSize="14" IsReadOnly="True" MaxWidth="120" MinWidth="120" SortDirection="Ascending"/>
+                        <DataGridTextColumn x:Name="cinColumn" Binding="{Binding cin}" Header="CIN" Width="SizeToHeader" CanUserReorder="False" FontSize="14" IsReadOnly="True" MaxWidth="100" MinWidth="100" SortDirection="Ascending"/>
+                        <DataGridTextColumn x:Name="telColumn" Binding="{Binding tel}" Header="tel" Width="SizeToHeader" Visibility="Hidden"/>
+                        <DataGridTemplateColumn x:Name="date_naissanceColumn" Header="date naissance" Width="SizeToHeader" Visibility="Hidden">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DatePicker SelectedDate="{Binding date_naissance, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn x:Name="adresseColumn" Binding="{Binding adresse}" Header="adresse" Width="SizeToHeader" Visibility="Hidden"/>
+                        <DataGridTextColumn x:Name="prenom_mariColumn" Binding="{Binding prenom_mari}" Header="prenom mari" Width="SizeToHeader" Visibility="Hidden"/>
+                        <DataGridTextColumn x:Name="nom_mariColumn" Binding="{Binding nom_mari}" Header="nom mari" Width="SizeToHeader" Visibility="Hidden"/>
+                        <DataGridTemplateColumn x:Name="ddrColumn" Header="ddr" Width="SizeToHeader" Visibility="Hidden">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DatePicker SelectedDate="{Binding ddr, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn x:Name="groupageColumn" Binding="{Binding groupage}" Header="groupage" Width="SizeToHeader" Visibility="Hidden"/>
+                        <DataGridTextColumn x:Name="trimestreColumn" Binding="{Binding trimestre}" Header="Trimestre" Width="SizeToHeader" CanUserReorder="False" CanUserResize="False" FontSize="14" IsReadOnly="True" MaxWidth="100" MinWidth="100" SortDirection="Ascending"/>
+                        <DataGridTemplateColumn x:Name="dpaColumn" Header="dpa" Width="SizeToHeader" Visibility="Hidden">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DatePicker SelectedDate="{Binding dpa, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn x:Name="date_ajoutColumn" Header="Date d'ajout" Width="SizeToHeader" CanUserSort="True" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MaxWidth="180" MinWidth="180" SortDirection="Ascending">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DatePicker SelectedDate="{Binding date_ajout, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn x:Name="bilanColumn" Binding="{Binding bilan}" Header="bilan" Width="SizeToHeader" Visibility="Hidden"/>
+                        <DataGridTextColumn x:Name="assuranceColumn" Binding="{Binding assurance}" Header="assurance" Width="SizeToHeader" Visibility="Hidden"/>
+                        <DataGridTemplateColumn CanUserReorder="False" CanUserResize="False" Header="Modifier" IsReadOnly="True" MaxWidth="90" MinWidth="90">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Click="ModifierPatient_Click" Background="DarkRed" Foreground="#FFE4E4E4" Opacity="0.8" >Modifier</Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn CanUserReorder="False" CanUserResize="False" Header="Dossier" IsReadOnly="True" MaxWidth="108" MinWidth="108">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Click="VoirDossierPatient_Click" Background="#FF0027AA" Foreground="White" Opacity="0.8" >Voir le dossier</Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn CanUserReorder="False" CanUserResize="False" Header="Supprimer" IsReadOnly="True" MaxWidth="90" MinWidth="90">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Click="SupprimerPatient_Click" Background="#FF068700" Foreground="Gainsboro" >Supprimer</Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <TextBox x:Name="patientSearchText" HorizontalAlignment="Left" Height="30" Margin="419,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" FontSize="14"/>
+                <ComboBox x:Name="comboBoxPatient" HorizontalAlignment="Left" Margin="166,63,0,0" VerticalAlignment="Top" Width="248" Height="30">
+                    <ComboBoxItem Content="N° du dossier" FontSize="14" IsSelected="True"/>
+                    <ComboBoxItem Content="Nom de la patiente" FontSize="14"/>
+                    <ComboBoxItem Content="Prénom de la patiente" FontSize="14"/>
+                    <ComboBoxItem Content="CIN de la patiente" FontSize="14"/>
+                    <ComboBoxItem Content="Téléphone" FontSize="14"/>
+                    <ComboBoxItem Content="Trimestre" FontSize="14"/>
+                </ComboBox>
+                <DatePicker Name="DatePickerPatient" HorizontalAlignment="Left" Margin="640,63,0,0" VerticalAlignment="Top" Width="198" Height="30" Background="White" FontSize="14"/>
+                <Button x:Name="button1" Content="Rechercher" HorizontalAlignment="Left" Margin="843,63,0,0" VerticalAlignment="Top" Width="183" Height="30" FontSize="14" Click="chercherPatient_click"/>
+                <Label x:Name="label11" Content="Recherche :" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Width="124" Height="31" Foreground="White" FontSize="14"/>
+                <Button x:Name="button2" Content="Ajouter un nouveau patient" HorizontalAlignment="Left" Margin="812,548,0,0" VerticalAlignment="Top" Width="214" Height="37" FontSize="14" Click="AjouterPatient_Click"/>
+            </Grid>
+            <Grid x:Name="RemplirPatientGrid" HorizontalAlignment="Left" Height="634" Margin="10,10,0,0" VerticalAlignment="Top" Width="1052" Grid.RowSpan="2" d:IsHidden="True">
+                <Label x:Name="label7" Content="Gestion des patients" HorizontalAlignment="Left" Margin="439,0,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
+                <Grid x:Name="InformationPatient" HorizontalAlignment="Left" Height="506" Margin="10,34,0,0" VerticalAlignment="Top" Width="1032" Background="Black">
+                    <Rectangle HorizontalAlignment="Left" Height="414" Margin="10,19,0,0" Stroke="#FF383838" VerticalAlignment="Top" Width="1016"/>
+                    <TextBox x:Name="nomPatient" HorizontalAlignment="Left" Height="29" Margin="180,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" VerticalContentAlignment="Center" FontSize="14"/>
+                    <TextBox x:Name="prenomPatient" HorizontalAlignment="Left" Height="29" Margin="726,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="296" VerticalContentAlignment="Center" FontSize="14"/>
+                    <TextBox x:Name="numDossier" HorizontalAlignment="Left" Height="29" Margin="180,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" VerticalContentAlignment="Center" FontSize="14"/>
+                    <TextBox x:Name="cinPatient" HorizontalAlignment="Left" Height="29" Margin="726,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="296" VerticalContentAlignment="Center" FontSize="14"/>
+                    <TextBox x:Name="tel" HorizontalAlignment="Left" Height="29" Margin="180,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" VerticalContentAlignment="Center" FontSize="14"/>
+                    <DatePicker x:Name="dateNaissance" HorizontalAlignment="Left" Margin="726,122,0,0" VerticalAlignment="Top" Width="300" Height="29" Background="White" BorderBrush="{x:Null}" Foreground="Black" HorizontalContentAlignment="Stretch"/>
+                    <TextBox x:Name="adresse" HorizontalAlignment="Left" Height="68" Margin="180,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="296" FontSize="14"/>
+                    <TextBox x:Name="prenomMari" HorizontalAlignment="Left" Height="29" Margin="180,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" VerticalContentAlignment="Center" FontSize="14" BorderBrush="Black"/>
+                    <TextBox x:Name="nomMari" HorizontalAlignment="Left" Height="29" Margin="726,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="296" VerticalContentAlignment="Center" FontSize="14"/>
+                    <DatePicker x:Name="DernierePeriode" HorizontalAlignment="Left" Margin="726,208,0,0" VerticalAlignment="Top" Width="300" Height="29" Background="White" BorderBrush="{x:Null}" Foreground="Black" HorizontalContentAlignment="Stretch"/>
+                    <TextBox x:Name="groupage" HorizontalAlignment="Left" Height="29" Margin="726,284,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="296" VerticalContentAlignment="Center" FontSize="14"/>
+                    <DatePicker x:Name="dpa"  HorizontalAlignment="Left" Margin="726,247,0,0" VerticalAlignment="Top" Width="296" Height="29" Background="White" BorderBrush="{x:Null}" Foreground="Black" HorizontalContentAlignment="Stretch"/>
+                    <TextBox x:Name="assurance" HorizontalAlignment="Left" Height="29" Margin="180,284,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" VerticalContentAlignment="Center" FontSize="14" BorderBrush="Black"/>
+                    <TextBox x:Name="description" HorizontalAlignment="Left" Height="91" Margin="180,327,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="842" VerticalContentAlignment="Center" FontSize="14" BorderBrush="{x:Null}"/>
+                    <Label x:Name="label8" Content="Nom" HorizontalAlignment="Left" Margin="21,34,0,0" VerticalAlignment="Top" Background="#FF9B9B9B" BorderBrush="#FF9B9B9B" Foreground="Black" FontWeight="Bold" FontSize="14" Width="159" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <Label x:Name="label8_Copy" Content="Prénom" HorizontalAlignment="Left" Margin="567,34,0,0" VerticalAlignment="Top" Background="#FF9B9B9B" BorderBrush="#FF9B9B9B" Foreground="Black" FontWeight="Bold" FontSize="14" Width="159" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <Label x:Name="label8_Copy1" Content="N° de dossier*" HorizontalAlignment="Left" Margin="21,79,0,0" VerticalAlignment="Top" Background="#FF9B9B9B" BorderBrush="#FF9B9B9B" Foreground="Black" FontWeight="Bold" FontSize="14" Width="159" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <Label x:Name="label8_Copy2" Content="CIN*" HorizontalAlignment="Left" Margin="567,79,0,0" VerticalAlignment="Top" Background="#FF9B9B9B" BorderBrush="#FF9B9B9B" Foreground="Black" FontWeight="Bold" FontSize="14" Width="159" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <Label x:Name="label8_Copy3" Content="N° de téléphone" HorizontalAlignment="Left" Margin="21,122,0,0" VerticalAlignment="Top" Background="#FF9B9B9B" BorderBrush="#FF9B9B9B" Foreground="Black" FontWeight="Bold" FontSize="14" Width="159" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <Label x:Name="label8_Copy4" Content="Adresse" HorizontalAlignment="Left" Margin="21,208,0,0" VerticalAlignment="Top" Background="#FF9B9B9B" BorderBrush="#FF9B9B9B" Foreground="Black" FontWeight="Bold" FontSize="14" Width="159" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="68"/>
+                    <Label x:Name="label8_Copy5" Content="Date de naissance*" HorizontalAlignment="Left" Margin="567,122,0,0" VerticalAlignment="Top" Background="#FF9B9B9B" BorderBrush="#FF9B9B9B" Foreground="Black" FontWeight="Bold" FontSize="14" Width="159" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <Label x:Name="label8_Copy6" Content="Nom du mari" HorizontalAlignment="Left" Margin="567,165,0,0" VerticalAlignment="Top" Background="#FF9B9B9B" BorderBrush="#FF9B9B9B" Foreground="Black" FontWeight="Bold" FontSize="14" Width="159" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <Label x:Name="label8_Copy7" Content="Prénom du mari" HorizontalAlignment="Left" Margin="21,165,0,0" VerticalAlignment="Top" Background="#FF9B9B9B" BorderBrush="#FF9B9B9B" Foreground="Black" FontWeight="Bold" FontSize="14" Width="159" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <Label x:Name="label8_Copy8" Content="Groupage" HorizontalAlignment="Left" Margin="567,284,0,0" VerticalAlignment="Top" Background="#FF9B9B9B" BorderBrush="#FF9B9B9B" Foreground="Black" FontWeight="Bold" FontSize="14" Width="159" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <Label x:Name="label8_Copy9" Content="DDR*" HorizontalAlignment="Left" Margin="567,208,0,0" VerticalAlignment="Top" Background="#FF9B9B9B" BorderBrush="#FF9B9B9B" Foreground="Black" FontWeight="Bold" FontSize="14" Width="159" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <Label x:Name="label8_Copy10" Content="DPA*" HorizontalAlignment="Left" Margin="567,247,0,0" VerticalAlignment="Top" Background="#FF9B9B9B" BorderBrush="#FF9B9B9B" Foreground="Black" FontWeight="Bold" FontSize="14" Width="159" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <Label x:Name="label8_Copy11" Content="Type d'assurance" HorizontalAlignment="Left" Margin="21,284,0,0" VerticalAlignment="Top" Background="#FF9B9B9B" BorderBrush="#FF9B9B9B" Foreground="Black" FontWeight="Bold" FontSize="14" Width="159" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <Label x:Name="label8_Copy12" Content="Description" HorizontalAlignment="Left" Margin="21,327,0,0" VerticalAlignment="Top" Background="#FF9B9B9B" Foreground="Black" FontWeight="Bold" FontSize="14" Width="159" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Height="91"/>
+                    <Label x:Name="label9" Content="Informations de la patiente" HorizontalAlignment="Left" Margin="21,3,0,0" VerticalAlignment="Top" Width="159" Foreground="White" FontStyle="Italic" Background="Black"/>
+                    <Button x:Name="button" Content="Enregistrer" HorizontalAlignment="Left" Margin="679,454,0,0" VerticalAlignment="Top" Width="159" Height="30" Click="EnregistrerPatient_Click"/>
+                    <Button x:Name="button_Copy" Content="Annuler" HorizontalAlignment="Left" Margin="863,454,0,0" VerticalAlignment="Top" Width="159" Height="30" Click="AnnulerPatient_Click"/>
+                </Grid>
+            </Grid>
+            <Grid Name="RDVGrid" HorizontalAlignment="Left" Height="677" Margin="10,0,0,0" VerticalAlignment="Top" Width="1062" Grid.RowSpan="2" d:IsHidden="True">
+                <Grid Name="ListeRDV" HorizontalAlignment="Left" Height="595" Margin="10,54,0,0" VerticalAlignment="Top" Width="1042" Background="Black" DataContext="{StaticResource rdvViewSource}" d:IsHidden="True">
+                    <Label x:Name="label12" Content="Liste des Rendez-vous" HorizontalAlignment="Left" Margin="426,10,0,0" VerticalAlignment="Top" Foreground="White" FontSize="18"/>
+                    <DataGrid x:Name="rdvDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10,107,10,86" RowDetailsVisibilityMode="VisibleWhenSelected" Background="{x:Null}" BorderBrush="{x:Null}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn x:Name="idColumn1" Binding="{Binding id}" Header="id" IsReadOnly="True" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="id_patientColumn" Binding="{Binding id_patient}" Header="id patient" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="type_rdvColumn" Binding="{Binding type_rdv}" Header="Type du RDV" Width="SizeToHeader" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MaxWidth="100" MinWidth="100" SortDirection="Ascending" FontWeight="Bold"/>
+                            <DataGridTextColumn x:Name="nom_patientColumn" Binding="{Binding nom_patient}" Header="Nom du patient" Width="SizeToHeader" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MaxWidth="120" MinWidth="120" SortDirection="Ascending"/>
+                            <DataGridTextColumn x:Name="prenom_patientColumn" Binding="{Binding prenom_patient}" Header="Prénom du patient" Width="SizeToHeader" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MaxWidth="120" MinWidth="120" SortDirection="Ascending"/>
+                            <DataGridTemplateColumn x:Name="dateColumn" Header="Date du RDV" Width="SizeToHeader" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MaxWidth="160" MinWidth="160" SortDirection="Ascending">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DatePicker SelectedDate="{Binding date, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn x:Name="heureColumn" Binding="{Binding heure}" Header="Heure du RDV" Width="SizeToHeader" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MaxWidth="90" MinWidth="90" SortDirection="Ascending"/>
+                            <DataGridTextColumn x:Name="dureeColumn" Binding="{Binding duree}" Header="duree" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="heure_finColumn" Binding="{Binding heure_fin}" Header="Fin du RDV" Width="SizeToHeader" CanUserReorder="False" CanUserResize="False" FontSize="14" FontFamily="Segoe UI Light" MaxWidth="90" MinWidth="90" SortDirection="Ascending" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="descriptionColumn" Binding="{Binding description}" Header="description" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="statutColumn" Binding="{Binding statut}" Header="Statut" Width="SizeToHeader" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MaxWidth="90" MinWidth="90" SortDirection="Ascending"/>
+                            <DataGridTemplateColumn CanUserReorder="False" CanUserResize="False" Header="Modifier le RDV" IsReadOnly="True" MaxWidth="100" MinWidth="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Click="ModifierRDV_Click" Background="DarkRed" Foreground="#FFE4E4E4" Opacity="0.8" >Modifier</Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn CanUserReorder="False" CanUserResize="False" Header="Dossier du patient" IsReadOnly="True" MaxWidth="120" MinWidth="120">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Click="VoirDossierAPartirDeRDV" Background="#FF0027AA" Foreground="White" Opacity="0.8" >Voir le dossier</Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn CanUserReorder="False" CanUserResize="False" Header="Supprimer le RDV" IsReadOnly="True" MaxWidth="110" MinWidth="110">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Click="deleteRDV_Click" Background="#FF068700" Foreground="Gainsboro" >Supprimer</Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <TextBox x:Name="RDVSearchText" HorizontalAlignment="Left" Height="30" Margin="426,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" FontSize="14"/>
+                    <ComboBox x:Name="comboBoxRDV" HorizontalAlignment="Left" Margin="173,72,0,0" VerticalAlignment="Top" Width="248" Height="30">
+                        <ComboBoxItem Content="Type de RDV" FontSize="14" IsSelected="True"/>
+                        <ComboBoxItem Content="Nom de la patiente" FontSize="14"/>
+                        <ComboBoxItem Content="Prénom de la patiente" FontSize="14"/>
+                        <ComboBoxItem Content="Statut du RDV" FontSize="14"/>
+                    </ComboBox>
+                    <DatePicker x:Name="DatePickerRDV" HorizontalAlignment="Left" Margin="646,72,0,0" VerticalAlignment="Top" Width="198" Height="30" Background="White" FontSize="14"/>
+                    <Button x:Name="button1_Copy1" Content="Rechercher" HorizontalAlignment="Left" Margin="849,72,0,0" VerticalAlignment="Top" Width="183" Height="30" FontSize="14" Click="chercherRDV_click"/>
+                    <Label x:Name="label11_Copy" Content="Recherche :" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top" Width="124" Height="31" Foreground="White" FontSize="14"/>
+                    <Button x:Name="button3" Content="Ajouter un rendez-vous" HorizontalAlignment="Left" Margin="827,514,0,0" VerticalAlignment="Top" Width="205" Height="42" FontSize="16" Click="AjouterRDV_Click"/>
+                </Grid>
+                <Grid x:Name="RemplirRDVGrid" HorizontalAlignment="Left" Height="533" Margin="164,73,0,0" VerticalAlignment="Top" Width="738" Background="Black" d:IsHidden="True">
+                    <Label x:Name="label3_Copy" Content="Note" HorizontalAlignment="Left" Margin="10,340,0,0" VerticalAlignment="Top" Height="136" Width="248" Background="#FF707070" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" FontFamily="Segoe UI Light"/>
+                    <Label x:Name="label3_Copy3" Content="Type de RDV*" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" Height="67" Width="248" Background="#FF707070" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" FontFamily="Segoe UI Light"/>
+                    <Label x:Name="label3_Copy8" Content="Durée*" HorizontalAlignment="Left" Margin="10,266,0,0" VerticalAlignment="Top" Height="32" Width="248" Background="#FF707070" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  FontSize="14" FontFamily="Segoe UI Light"/>
+                    <Label x:Name="label3_Copy9" Content="Heure du RDV*" HorizontalAlignment="Left" Margin="10,229,0,0" VerticalAlignment="Top" Height="32" Width="248" Background="#FF707070" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  FontSize="14" FontFamily="Segoe UI Light" />
+                    <Label x:Name="label3_Copy11" Content="Prénom du patient*" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top" Height="32" Width="248" Background="#FF707070" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  FontSize="14" FontFamily="Segoe UI Light" />
+                    <CheckBox x:Name="cpn1" Content="CPN1" HorizontalAlignment="Left" Margin="275,24,0,0" VerticalAlignment="Top" Height="21" Width="60" Foreground="White"/>
+                    <CheckBox x:Name="cpn2" Content="CPN2" HorizontalAlignment="Left" Margin="371,24,0,0" VerticalAlignment="Top" Height="21" Width="55" Foreground="White"/>
+                    <CheckBox x:Name="cpn3" Content="CPN3" HorizontalAlignment="Left" Margin="443,24,0,0" VerticalAlignment="Top" Height="21" Width="56" Foreground="White"/>
+                    <CheckBox x:Name="cpn4" Content="CPN4" HorizontalAlignment="Left" Margin="539,24,0,0" VerticalAlignment="Top" Height="21" Width="56" Foreground="White"/>
+                    <CheckBox x:Name="autreType" Content="Autre" HorizontalAlignment="Left" Margin="619,24,0,0" VerticalAlignment="Top" Height="21" Width="96" Foreground="White"/>
+                    <CheckBox x:Name="cpon1" Content="CPoN1" HorizontalAlignment="Left" Margin="275,50,0,0" VerticalAlignment="Top" Height="21" Width="96" Foreground="White"/>
+                    <Label x:Name="label3_Copy12" Content="Nom du patient*" HorizontalAlignment="Left" Margin="10,82,0,0" VerticalAlignment="Top" Height="31" Width="248" Background="#FF707070" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"  FontFamily="Segoe UI Light" />
+                    <CheckBox x:Name="echographie" Content="Echographie" HorizontalAlignment="Left" Margin="443,50,0,0" VerticalAlignment="Top" Height="21" Width="97" Foreground="White"/>
+                    <Label x:Name="label3_Copy13" Content="Date du RDV*" HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top" Height="32" Width="248" Background="#FF707070" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"  FontFamily="Segoe UI Light"/>
+                    <Label x:Name="label3_Copy14" Content="Statut*" HorizontalAlignment="Left" Margin="10,303,0,0" VerticalAlignment="Top" Height="32" Width="248" Background="#FF707070" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"  FontFamily="Segoe UI Light"/>
+                    <TextBox x:Name="PrenomPatientRDV" HorizontalAlignment="Left" Height="32" Margin="258,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="470" FontSize="14"/>
+                    <TextBox x:Name="NomPatientRDV" HorizontalAlignment="Left" Height="31" Margin="258,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="470" FontSize="14"/>
+                    <TextBox x:Name="descriptionRDV" HorizontalAlignment="Left" Height="136" Margin="258,340,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="470" FontSize="14"/>
+                    <Button x:Name="button4" Content="Enregistrer" HorizontalAlignment="Left" Margin="389,481,0,0" VerticalAlignment="Top" Width="167" Height="29" FontSize="14" Click="EnregistrerRDV_Click"/>
+                    <Button x:Name="button1_Copy" Content="Annuler" HorizontalAlignment="Left" Margin="561,481,0,0" VerticalAlignment="Top" Width="167" Height="29" FontSize="14" Click="AnnulerRDV_Click"/>
+                    <DatePicker x:Name="dateRDV" HorizontalAlignment="Left" Margin="258,192,0,0" VerticalAlignment="Top" Width="470" Height="32" Background="White" FontSize="14"/>
+                    <Button x:Name="button5" Content="Ajouter un patient" HorizontalAlignment="Left" Margin="443,155,0,0" VerticalAlignment="Top" Width="285" Height="32" FontSize="14" Click="ChoisirPatientPourRDV_Click"/>
+                    <ComboBox x:Name="comboBoxHeureRDV" HorizontalAlignment="Left" Margin="258,229,0,0" VerticalAlignment="Top" Width="223" Height="32">
+                        <ComboBoxItem Content="8" FontSize="14"/>
+                        <ComboBoxItem Content="9" FontSize="14"/>
+                        <ComboBoxItem Content="10" FontSize="14"/>
+                        <ComboBoxItem Content="11" FontSize="14"/>
+                        <ComboBoxItem Content="12" FontSize="14"/>
+                        <ComboBoxItem Content="13" FontSize="14"/>
+                        <ComboBoxItem Content="14" FontSize="14"/>
+                        <ComboBoxItem Content="15" FontSize="14"/>
+                        <ComboBoxItem Content="16" FontSize="14"/>
+                        <ComboBoxItem Content="17" FontSize="14"/>
+                        <ComboBoxItem Content="18" FontSize="14"/>
+                    </ComboBox>
+                    <Label x:Name="label13" Content=":" HorizontalAlignment="Left" Margin="484,229,0,0" VerticalAlignment="Top" Height="29" Foreground="White" FontWeight="Bold" FontSize="18"/>
+                    <ComboBox x:Name="comboBoxMinuteRDV" HorizontalAlignment="Left" Margin="501,229,0,0" VerticalAlignment="Top" Width="227" Height="32">
+                        <ComboBoxItem Content="00" IsSelected="True" FontSize="14"/>
+                        <ComboBoxItem Content="15" FontSize="14"/>
+                        <ComboBoxItem Content="30" FontSize="14"/>
+                        <ComboBoxItem Content="45" FontSize="14"/>
+                    </ComboBox>
+                    <ComboBox x:Name="comboBoxDureeHeure" HorizontalAlignment="Left" Margin="258,266,0,0" VerticalAlignment="Top" Width="223" Height="32">
+                        <ComboBoxItem Content="00" IsSelected="True" FontSize="14"/>
+                        <ComboBoxItem Content="1" FontSize="14"/>
+                        <ComboBoxItem Content="2" FontSize="14"/>
+                        <ComboBoxItem Content="3" FontSize="14"/>
+                        <ComboBoxItem Content="4" FontSize="14"/>
+                    </ComboBox>
+                    <Label x:Name="label13_Copy" Content=":" HorizontalAlignment="Left" Margin="484,266,0,0" VerticalAlignment="Top" Height="29" Foreground="White" FontWeight="Bold" FontSize="18"/>
+                    <ComboBox x:Name="comboBoxDureeMinute" HorizontalAlignment="Left" Margin="501,266,0,0" VerticalAlignment="Top" Width="227" Height="32">
+                        <ComboBoxItem Content="00" IsSelected="True" FontSize="14"/>
+                        <ComboBoxItem Content="15" FontSize="14"/>
+                        <ComboBoxItem Content="30" FontSize="14"/>
+                        <ComboBoxItem Content="45" FontSize="14"/>
+                    </ComboBox>
+                    <CheckBox x:Name="enAttente" Content="En attente" HorizontalAlignment="Left" Margin="275,312,0,0" VerticalAlignment="Top" Foreground="White" Height="20" Width="88" FontSize="14"/>
+                    <CheckBox x:Name="effectue" Content="Effectué" HorizontalAlignment="Left" Margin="443,312,0,0" VerticalAlignment="Top" Foreground="White" Height="20" Width="88" FontSize="14"/>
+                    <CheckBox x:Name="cpon2" Content="CPoN2" HorizontalAlignment="Left" Margin="371,50,0,0" VerticalAlignment="Top" Height="21" Width="96" Foreground="White"/>
+                </Grid>
+                <Grid x:Name="ChoisirPatientPourRDVGrid" HorizontalAlignment="Left" Height="605" Margin="26,39,0,0" VerticalAlignment="Top" Width="1036" Background="Black" DataContext="{StaticResource table_patientViewSource}" d:IsHidden="True">
+                    <Label x:Name="label14" Content="Liste des patients" HorizontalAlignment="Left" Margin="443,10,0,0" VerticalAlignment="Top" Foreground="White" FontSize="18"/>
+                    <DataGrid x:Name="table_patientPourRDVDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10,98,10,62" RowDetailsVisibilityMode="VisibleWhenSelected" Background="{x:Null}" BorderBrush="{x:Null}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn x:Name="idColumn2" Binding="{Binding id}" Header="id" IsReadOnly="True" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="num_dossierColumn1" Binding="{Binding num_dossier}" Header="N° de dossier" Width="SizeToHeader" CanUserReorder="False" CanUserResize="False" FontSize="14" IsReadOnly="True" MaxWidth="100" MinWidth="100" SortDirection="Ascending"/>
+                            <DataGridTextColumn x:Name="nomColumn1" Binding="{Binding nom}" Header="Nom" Width="SizeToHeader" CanUserReorder="False" FontSize="14" IsReadOnly="True" MaxWidth="120" MinWidth="120" SortDirection="Ascending"/>
+                            <DataGridTextColumn x:Name="prenomColumn1" Binding="{Binding prenom}" Header="Prénom" Width="SizeToHeader" CanUserReorder="False" FontSize="14" IsReadOnly="True" MaxWidth="120" MinWidth="120" SortDirection="Ascending"/>
+                            <DataGridTextColumn x:Name="cinColumn1" Binding="{Binding cin}" Header="CIN" Width="SizeToHeader" CanUserReorder="False" FontSize="14" IsReadOnly="True" MaxWidth="100" MinWidth="100" SortDirection="Ascending"/>
+                            <DataGridTextColumn x:Name="telColumn1" Binding="{Binding tel}" Header="tel" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTemplateColumn x:Name="date_naissanceColumn1" Header="date naissance" Width="SizeToHeader" Visibility="Hidden">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DatePicker SelectedDate="{Binding date_naissance, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn x:Name="adresseColumn1" Binding="{Binding adresse}" Header="adresse" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="prenom_mariColumn1" Binding="{Binding prenom_mari}" Header="prenom mari" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="nom_mariColumn1" Binding="{Binding nom_mari}" Header="nom mari" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTemplateColumn x:Name="ddrColumn1" Header="ddr" Width="SizeToHeader" Visibility="Hidden">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DatePicker SelectedDate="{Binding ddr, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn x:Name="groupageColumn1" Binding="{Binding groupage}" Header="groupage" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="trimestreColumn1" Binding="{Binding trimestre}" Header="Trimestre" Width="SizeToHeader" CanUserReorder="False" CanUserResize="False" FontSize="14" IsReadOnly="True" MaxWidth="100" MinWidth="100" SortDirection="Ascending"/>
+                            <DataGridTemplateColumn x:Name="dpaColumn1" Header="dpa" Width="SizeToHeader" Visibility="Hidden">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DatePicker SelectedDate="{Binding dpa, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn x:Name="date_ajoutColumn1" Header="Date d'ajout" Width="SizeToHeader" CanUserSort="True" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MaxWidth="180" MinWidth="180" SortDirection="Ascending">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DatePicker SelectedDate="{Binding date_ajout, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn x:Name="bilanColumn1" Binding="{Binding bilan}" Header="bilan" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="assuranceColumn1" Binding="{Binding assurance}" Header="assurance" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTemplateColumn CanUserReorder="False" CanUserResize="False" Header="Choisir la patiente" IsReadOnly="True" MaxWidth="285" MinWidth="285">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Click="ChoisirPatientPourRDV" Background="DarkRed" Foreground="#FFE4E4E4" Opacity="0.8" Content="Choisir" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <TextBox x:Name="patientSearchTextPourRDV" HorizontalAlignment="Left" Height="30" Margin="419,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" FontSize="14"/>
+                    <ComboBox x:Name="comboBoxPatientPourRDV" HorizontalAlignment="Left" Margin="166,63,0,0" VerticalAlignment="Top" Width="248" Height="30">
+                        <ComboBoxItem Content="N° du dossier" FontSize="14" IsSelected="True"/>
+                        <ComboBoxItem Content="Nom de la patiente" FontSize="14"/>
+                        <ComboBoxItem Content="Prénom de la patiente" FontSize="14"/>
+                        <ComboBoxItem Content="CIN de la patiente" FontSize="14"/>
+                        <ComboBoxItem Content="Téléphone" FontSize="14"/>
+                        <ComboBoxItem Content="Trimestre" FontSize="14"/>
+                    </ComboBox>
+                    <DatePicker x:Name="DatePickerPatientPourRDV" HorizontalAlignment="Left" Margin="640,63,0,0" VerticalAlignment="Top" Width="198" Height="30" Background="White" FontSize="14"/>
+                    <Button x:Name="button6" Content="Rechercher" HorizontalAlignment="Left" Margin="843,63,0,0" VerticalAlignment="Top" Width="183" Height="30" FontSize="14" Click="chercherPatient_click"/>
+                    <Label x:Name="label15" Content="Recherche :" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Width="124" Height="31" Foreground="White" FontSize="14"/>
+                    <Button x:Name="button7" Content="Annuler" HorizontalAlignment="Left" Margin="812,548,0,0" VerticalAlignment="Top" Width="214" Height="37" FontSize="14" Click="AnnulerChoisirPatientPourRDV_Click"/>
+                </Grid>
+            </Grid>
+            <Grid Name="AcceuilGrid" HorizontalAlignment="Left" Height="677" Margin="10,0,-13,0" VerticalAlignment="Top" Width="1075" Grid.RowSpan="2" d:IsHidden="True">
+                <Grid HorizontalAlignment="Left" Height="132" Margin="69,136,0,0" VerticalAlignment="Top" Width="938" Background="#FFCDCDCD" MouseLeftButtonDown="AfficherRDVDuJour_Click">
+                    <Label x:Name="label16" Content="Total Patientes" HorizontalAlignment="Left" Margin="820,92,0,0" VerticalAlignment="Top" Height="40" Width="118" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="14" Foreground="#FF646464"/>
+                    <Image x:Name="image1" Source="C:\Users\HP\Desktop\Project\TotalPatient.png" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Opacity="0.5"/>
+                    <Label x:Name="TotalPatiente" Content="0" HorizontalAlignment="Left" Margin="833,-14,0,0" VerticalAlignment="Top" Height="114" Width="95" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Segoe UI Light" FontSize="72" Background="{x:Null}" Foreground="#FF646464"/>
+                </Grid>
+                <Grid HorizontalAlignment="Left" Height="132" Margin="69,273,0,0" VerticalAlignment="Top" Width="467" Background="#FFCDCDCD" MouseLeftButtonDown="AfficherRDVDuJourAttente_Click">
+                    <Label x:Name="label18" Content="Patientes en attente" HorizontalAlignment="Left" Margin="349,92,0,0" VerticalAlignment="Top" Height="40" Width="118" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FF646464"/>
+                    <Image x:Name="image2" Source="C:\Users\HP\Desktop\Project\PatientAttente.png" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Opacity="0.5"/>
+                    <Label x:Name="PatienteEnAttente" Content="0" HorizontalAlignment="Left" Margin="362,-14,0,0" VerticalAlignment="Top" Height="114" Width="95" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Segoe UI Light" FontSize="72" Foreground="#FF646464"/>
+                </Grid>
+                <Grid HorizontalAlignment="Left" Height="132" Margin="540,273,0,0" VerticalAlignment="Top" Width="467" Background="#FFCDCDCD" MouseLeftButtonDown="AfficherRDVDuJourEffectue_Click">
+                    <Label x:Name="label20" Content="Consultations &#xD;&#xA;effectuées" HorizontalAlignment="Left" Margin="360,92,0,0" VerticalAlignment="Top" Height="40" Width="92" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FF646464"/>
+                    <Image x:Name="image3" Source="C:\Users\HP\Desktop\Project\effectuees.png" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Opacity="0.5"/>
+                    <Label x:Name="ConsultationEffectuees" Content="0" HorizontalAlignment="Left" Margin="357,-14,0,0" VerticalAlignment="Top" Height="114" Width="95" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Segoe UI Light" FontSize="72" Foreground="#FF646464"/>
+                </Grid>
+                <Grid HorizontalAlignment="Left" Height="132" Margin="69,410,0,0" VerticalAlignment="Top" Width="310" Background="#FFCDCDCD" MouseLeftButtonDown="AfficherRDVDuJourCPN_Click">
+                    <Label x:Name="label17" Content="Total CPN" HorizontalAlignment="Left" Margin="194,92,0,0" VerticalAlignment="Top" Height="40" Width="118" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FF646464"/>
+                    <Image x:Name="image4" Source="C:\Users\HP\Desktop\Project\prenatale.png" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100"/>
+                    <Label x:Name="Prenatale" Content="0" HorizontalAlignment="Left" Margin="207,-14,0,0" VerticalAlignment="Top" Height="114" Width="95" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Segoe UI Light" FontSize="72" Foreground="#FF646464"/>
+                </Grid>
+                <Grid HorizontalAlignment="Left" Height="132" Margin="697,410,0,0" VerticalAlignment="Top" Width="310" Background="#FFCDCDCD" MouseLeftButtonDown="AfficherRDVDuJourCPoN_Click">
+                    <Label x:Name="label19" Content="Total CPoN" HorizontalAlignment="Left" Margin="194,92,0,0" VerticalAlignment="Top" Height="40" Width="118" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FF646464"/>
+                    <Image x:Name="image5" Source="C:\Users\HP\Desktop\Project\postnatale.png" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100"/>
+                    <Label x:Name="Postnatale" Content="0" HorizontalAlignment="Left" Margin="207,-14,0,0" VerticalAlignment="Top" Height="114" Width="95" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Segoe UI Light" FontSize="72" Foreground="#FF646464"/>
+                </Grid>
+                <Grid HorizontalAlignment="Left" Height="132" Margin="382,410,0,0" VerticalAlignment="Top" Width="310" Background="#FFCDCDCD" MouseLeftButtonDown="AfficherRDVDuJourEcho_Click">
+                    <Label x:Name="label21" Content="Total Echographie" HorizontalAlignment="Left" Margin="194,92,0,0" VerticalAlignment="Top" Height="40" Width="118" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FF646464"/>
+                    <Image x:Name="image6" Source="C:\Users\HP\Desktop\Project\echographie.png" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Opacity="0.8"/>
+                    <Label x:Name="Echographie" Content="0" HorizontalAlignment="Left" Margin="207,-14,0,0" VerticalAlignment="Top" Height="114" Width="95" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Segoe UI Light" FontSize="72" Foreground="#FF646464"/>
+                </Grid>
+            </Grid>
+            <Grid Name="RapportCPNGrid" HorizontalAlignment="Left" Height="677" Margin="10,0,-13,0" VerticalAlignment="Top" Width="1075" Grid.RowSpan="2" d:IsHidden="True">
+                <Grid x:Name="ListeRDV_Copy" HorizontalAlignment="Left" Height="595" Margin="10,54,0,0" VerticalAlignment="Top" Width="1042" Background="Black" DataContext="{StaticResource rdvViewSource}">
+                    <Label x:Name="label22" Content="Liste des rapports CPN" HorizontalAlignment="Left" Margin="426,10,0,0" VerticalAlignment="Top" Foreground="White" FontSize="18"/>
+                    <TextBox x:Name="RapportCPNSearchText" HorizontalAlignment="Left" Height="30" Margin="426,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" FontSize="14"/>
+                    <ComboBox x:Name="comboBoxRapportCPN" HorizontalAlignment="Left" Margin="173,72,0,0" VerticalAlignment="Top" Width="248" Height="30">
+                        <ComboBoxItem Content="Mois" FontSize="14" IsSelected="True"/>
+                    </ComboBox>
+                    <DatePicker x:Name="DatePickerRapportCPN" HorizontalAlignment="Left" Margin="646,72,0,0" VerticalAlignment="Top" Width="198" Height="30" Background="White" FontSize="14"/>
+                    <Button x:Name="button1_Copy2" Content="Rechercher" HorizontalAlignment="Left" Margin="849,72,0,0" VerticalAlignment="Top" Width="183" Height="30" FontSize="14" Click="chercherRapportCPN_click"/>
+                    <Label x:Name="label11_Copy1" Content="Recherche :" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top" Width="124" Height="31" Foreground="White" FontSize="14"/>
+                    <DataGrid x:Name="rapportCPNDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource rapportCPNViewSource}}" Margin="10,107,10,26" RowDetailsVisibilityMode="VisibleWhenSelected" Background="{x:Null}" BorderBrush="{x:Null}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn x:Name="idColumn3" Binding="{Binding id}" Header="id" IsReadOnly="True" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="moisColumn" Binding="{Binding Mois}" Header="Mois" Width="SizeToHeader" CanUserReorder="False" FontSize="14" FontFamily="Segoe UI Light" IsReadOnly="True" MaxWidth="250" MinWidth="250" SortDirection="Ascending"/>
+                            <DataGridTemplateColumn x:Name="date_creationColumn" Header="Date de création" Width="SizeToHeader" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MaxWidth="250" MinWidth="250" SortDirection="Ascending">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DatePicker SelectedDate="{Binding date_creation, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn x:Name="cpn1Column" Binding="{Binding cpn1}" Header="cpn 1" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="cpn2Column" Binding="{Binding cpn2}" Header="cpn 2" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="cpn3_8Column" Binding="{Binding cpn3_8}" Header="cpn 3 8" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="cpn3_9Column" Binding="{Binding cpn3_9}" Header="cpn 3 9" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="autre_cpnColumn" Binding="{Binding autre_cpn}" Header="autre cpn" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="cpn_medicaliseColumn" Binding="{Binding cpn_medicalise}" Header="cpn medicalise" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="metrorragieColumn" Binding="{Binding metrorragie}" Header="metrorragie" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="htaColumn" Binding="{Binding hta}" Header="hta" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="diabeteColumn" Binding="{Binding diabete}" Header="diabete" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="cardiopathieColumn" Binding="{Binding cardiopathie}" Header="cardiopathie" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="infectionColumn" Binding="{Binding infection}" Header="infection" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="autre_risqueColumn" Binding="{Binding autre_risque}" Header="autre risque" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="gar_pecColumn" Binding="{Binding gar_pec}" Header="gar pec" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="gar_refereeColumn" Binding="{Binding gar_referee}" Header="gar referee" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="ferColumn" Binding="{Binding fer}" Header="fer" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="vitamine_dColumn" Binding="{Binding vitamine_d}" Header="vitamine d" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="anemieColumn" Binding="{Binding anemie}" Header="anemie" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="cpn2_niColumn" Binding="{Binding cpn2_ni}" Header="cpn 2 ni" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="cpn2_aiColumn" Binding="{Binding cpn2_ai}" Header="cpn 2 ai" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="cpn3_8_niColumn" Binding="{Binding cpn3_8_ni}" Header="cpn 3 8 ni" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="cpn3_8_aiColumn" Binding="{Binding cpn3_8_ai}" Header="cpn 3 8 ai" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="cpn3_9_niColumn" Binding="{Binding cpn3_9_ni}" Header="cpn 3 9 ni" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="cpn3_9_aiColumn" Binding="{Binding cpn3_9_ai}" Header="cpn 3 9 ai" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="autre_cpn_niColumn" Binding="{Binding autre_cpn_ni}" Header="autre cpn ni" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="autre_cpn_aiColumn" Binding="{Binding autre_cpn_ai}" Header="autre cpn ai" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTemplateColumn CanUserReorder="False" CanUserResize="False" Header="Rapport Mensuel" IsReadOnly="True" MaxWidth="250" MinWidth="250" SortDirection="Ascending">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Click="VoirRapportCPN_Click" Background="#FF0027AA" Foreground="White" Opacity="0.8" Content="Voir le rapport" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn CanUserReorder="False" CanUserResize="False" Header="Supprimer le rapport" IsReadOnly="True" MaxWidth="250" MinWidth="250">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Click="DeleteRapportCPN_Click" Background="#FF068700" Foreground="Gainsboro" Content="Supprimer" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Grid>
+            <Grid x:Name="RapportCPoNGrid" HorizontalAlignment="Left" Height="677" Margin="10,0,-13,0" VerticalAlignment="Top" Width="1075" Grid.RowSpan="2" d:IsHidden="True">
+                <Grid x:Name="ListeRDV_Copy1" HorizontalAlignment="Left" Height="595" Margin="10,54,0,0" VerticalAlignment="Top" Width="1042" Background="Black" DataContext="{StaticResource rdvViewSource}">
+                    <Label x:Name="label23" Content="Liste des rapports CPoN" HorizontalAlignment="Left" Margin="426,10,0,0" VerticalAlignment="Top" Foreground="White" FontSize="18"/>
+                    <TextBox x:Name="RapportCPoNSearchText" HorizontalAlignment="Left" Height="30" Margin="426,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" FontSize="14"/>
+                    <ComboBox x:Name="comboBoxRapportCPoN" HorizontalAlignment="Left" Margin="173,72,0,0" VerticalAlignment="Top" Width="248" Height="30">
+                        <ComboBoxItem Content="Mois" FontSize="14" IsSelected="True"/>
+                    </ComboBox>
+                    <DatePicker x:Name="DatePickerRapportCPoN" HorizontalAlignment="Left" Margin="646,72,0,0" VerticalAlignment="Top" Width="198" Height="30" Background="White" FontSize="14"/>
+                    <Button x:Name="button1_Copy3" Content="Rechercher" HorizontalAlignment="Left" Margin="849,72,0,0" VerticalAlignment="Top" Width="183" Height="30" FontSize="14" Click="chercherRapportCPoN_click"/>
+                    <Label x:Name="label11_Copy2" Content="Recherche :" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top" Width="124" Height="31" Foreground="White" FontSize="14"/>
+                    <DataGrid x:Name="rapportCPoNDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource rapportCPoNViewSource}}" Margin="10,107,10,58" RowDetailsVisibilityMode="VisibleWhenSelected" Background="{x:Null}" BorderBrush="{x:Null}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn x:Name="idColumn4" Binding="{Binding id}" Header="id" IsReadOnly="True" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="moisColumn1" Binding="{Binding mois}" Header="Mois" Width="SizeToHeader" CanUserReorder="False" CanUserResize="False" FontSize="14" FontFamily="Segoe UI Light" IsReadOnly="True" MaxWidth="250" MinWidth="250" SortDirection="Ascending"/>
+                            <DataGridTemplateColumn x:Name="date_creationColumn1" Header="Date de création" Width="SizeToHeader" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MaxWidth="250" MinWidth="250" SortDirection="Ascending">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DatePicker SelectedDate="{Binding date_creation, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn x:Name="precoceColumn" Binding="{Binding precoce}" Header="precoce" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="tardiveColumn" Binding="{Binding tardive}" Header="tardive" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="autre_typeColumn" Binding="{Binding autre_type}" Header="autre type" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="hemorragieColumn" Binding="{Binding hemorragie}" Header="hemorragie" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="infectionColumn1" Binding="{Binding infection}" Header="infection" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="eclampsieColumn" Binding="{Binding eclampsie}" Header="eclampsie" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="phlebiteColumn" Binding="{Binding phlebite}" Header="phlebite" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="mammaireColumn" Binding="{Binding mammaire}" Header="mammaire" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="anemieColumn1" Binding="{Binding anemie}" Header="anemie" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="autre_complicationColumn" Binding="{Binding autre_complication}" Header="autre complication" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="pecColumn" Binding="{Binding pec}" Header="pec" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="refereeColumn" Binding="{Binding referee}" Header="referee" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="ferColumn1" Binding="{Binding fer}" Header="fer" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTemplateColumn CanUserReorder="False" CanUserResize="False" Header="Rapport Mensuel" IsReadOnly="True" MaxWidth="250" MinWidth="250" SortDirection="Ascending">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Click="VoirRapportCPoN_Click" Background="#FF0027AA" Foreground="White" Opacity="0.8" Content="Voir le rapport" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn CanUserReorder="False" CanUserResize="False" Header="Supprimer le rapport" IsReadOnly="True" MaxWidth="250" MinWidth="250">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Click="DeleteRapportCPoN_Click" Background="#FF068700" Foreground="Gainsboro" Content="Supprimer" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Grid>
+            <Grid x:Name="RapportJournalierGrid" HorizontalAlignment="Left" Height="677" Margin="10,0,-13,0" VerticalAlignment="Top" Width="1075" Grid.RowSpan="2">
+                <Grid x:Name="ListeRDV_Copy2" HorizontalAlignment="Left" Height="595" Margin="10,54,0,0" VerticalAlignment="Top" Width="1042" Background="Black" DataContext="{StaticResource rdvViewSource}">
+                    <Label x:Name="label24" Content="Liste des rapports Journaliers" HorizontalAlignment="Left" Margin="402,10,0,0" VerticalAlignment="Top" Foreground="White" FontSize="18"/>
+                    <TextBox x:Name="RapportJournalierSearchText" HorizontalAlignment="Left" Height="30" Margin="426,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" FontSize="14"/>
+                    <ComboBox x:Name="comboBoxRapportJournalier" HorizontalAlignment="Left" Margin="173,72,0,0" VerticalAlignment="Top" Width="248" Height="30">
+                        <ComboBoxItem Content="Mois" FontSize="14" IsSelected="True"/>
+                        <ComboBoxItem Content="Jour" FontSize="14"/>
+                    </ComboBox>
+                    <DatePicker x:Name="DatePickerRapportJournalier" HorizontalAlignment="Left" Margin="646,72,0,0" VerticalAlignment="Top" Width="198" Height="30" Background="White" FontSize="14"/>
+                    <Button x:Name="button1_Copy4" Content="Rechercher" HorizontalAlignment="Left" Margin="849,72,0,0" VerticalAlignment="Top" Width="183" Height="30" FontSize="14" Click="chercherRapportJournalier_click"/>
+                    <Label x:Name="label11_Copy3" Content="Recherche :" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top" Width="124" Height="31" Foreground="White" FontSize="14"/>
+                    <Button x:Name="button8" Content="Créer le rapport journalier" HorizontalAlignment="Left" Margin="790,542,0,0" VerticalAlignment="Top" Width="242" Height="43" FontFamily="Segoe UI Light" FontSize="18" Click="CreerRapport_Click"/>
+                    <DataGrid x:Name="rapportJournalierDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource rapportJournalierViewSource}}" Margin="10,107,10,58" RowDetailsVisibilityMode="VisibleWhenSelected" Background="{x:Null}" BorderBrush="{x:Null}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn x:Name="idColumn5" Binding="{Binding id}" Header="id" IsReadOnly="True" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="t1_ncColumn" Binding="{Binding t1_nc}" Header="t 1 nc" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="t1_acColumn" Binding="{Binding t1_ac}" Header="t 1 ac" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="t2_ncColumn" Binding="{Binding t2_nc}" Header="t 2 nc" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="t2_acColumn" Binding="{Binding t2_ac}" Header="t 2 ac" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="t3_ncColumn" Binding="{Binding t3_nc}" Header="t 3 nc" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="t3_acColumn" Binding="{Binding t3_ac}" Header="t 3 ac" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="pec_ncColumn" Binding="{Binding pec_nc}" Header="pec nc" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="pec_acColumn" Binding="{Binding pec_ac}" Header="pec ac" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="refereeColumn1" Binding="{Binding referee}" Header="referee" Width="SizeToHeader" Visibility="Hidden"/>
+                            <DataGridTextColumn x:Name="moisColumn2" Binding="{Binding mois}" Header="Mois" Width="SizeToHeader" CanUserReorder="False" CanUserResize="False" FontSize="14" IsReadOnly="True" MaxWidth="200" MinWidth="200" SortDirection="Ascending"/>
+                            <DataGridTemplateColumn x:Name="date_creationColumn2" Header="Date de création" Width="SizeToHeader" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MaxWidth="200" MinWidth="200" SortDirection="Ascending">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DatePicker SelectedDate="{Binding date_creation, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn x:Name="jourColumn" Binding="{Binding jour}" Header="Jour" Width="SizeToHeader" CanUserReorder="False" CanUserResize="False" FontSize="14" IsReadOnly="True" MaxWidth="200" MinWidth="200" SortDirection="Ascending"/>
+                            <DataGridTemplateColumn CanUserReorder="False" CanUserResize="False" Header="Rapport Mensuel" IsReadOnly="True" MaxWidth="205" MinWidth="205" SortDirection="Ascending">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Click="VoirRapportJournalier_Click" Background="#FF0027AA" Foreground="White" Opacity="0.8" Content="Voir le rapport" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn CanUserReorder="False" CanUserResize="False" Header="Supprimer le rapport" IsReadOnly="True" MaxWidth="205" MinWidth="205">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Click="DeleteRapportJournalier_Click" Background="#FF068700" Foreground="Gainsboro" Content="Supprimer" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Grid>
+
+        </Grid>
+        <Button x:Name="rapportMensuel_Copy" Content="Rapport Mensuel CPoN" HorizontalAlignment="Left" Margin="-30,231,0,0" VerticalAlignment="Top" Width="284" Height="30" Background="{x:Null}" Foreground="Black" BorderBrush="{x:Null}" BorderThickness="0" HorizontalContentAlignment="Left" Padding="90,1,1,1" Opacity="0.7" FontSize="14" FontWeight="Bold" Click="RapportCPoN_Click"/>
+        <Button x:Name="rapportMensuel_Copy1" Content="Rapport Journalier" HorizontalAlignment="Left" Margin="-30,266,0,0" VerticalAlignment="Top" Width="284" Height="30" Background="{x:Null}" Foreground="Black" BorderBrush="{x:Null}" BorderThickness="0" HorizontalContentAlignment="Left" Padding="90,1,1,1" Opacity="0.7" FontSize="14" FontWeight="Bold" Click="RapportJournalier_Click"/>
+        <Image x:Name="image" Source="C:\Users\HP\Documents\visual studio 2015\Projects\Projet\Projet\home1.png" HorizontalAlignment="Left" Height="30" Margin="11,38,0,0" VerticalAlignment="Top" Width="33"/>
+        <Image x:Name="image_Copy" Source="C:\Users\HP\Documents\visual studio 2015\Projects\Projet\Projet\agenda.png" HorizontalAlignment="Left" Height="30" Margin="11,73,0,0" VerticalAlignment="Top" Width="33"/>
+        <Image x:Name="image_Copy1" Source="C:\Users\HP\Documents\visual studio 2015\Projects\Projet\Projet\RapportCPN.png" HorizontalAlignment="Left" Height="30" Margin="11,196,0,0" VerticalAlignment="Top" Width="33"/>
+        <Image x:Name="image_Copy2" Source="C:\Users\HP\Documents\visual studio 2015\Projects\Projet\Projet\patiente.png" HorizontalAlignment="Left" Height="30" Margin="10,161,0,0" VerticalAlignment="Top" Width="33"/>
+        <Image x:Name="image_Copy3" Source="C:\Users\HP\Documents\visual studio 2015\Projects\Projet\Projet\logout.png" HorizontalAlignment="Left" Height="30" Margin="10,336,0,0" VerticalAlignment="Top" Width="33"/>
+        <Image x:Name="image_Copy4" Source="C:\Users\HP\Documents\visual studio 2015\Projects\Projet\Projet\parameter.png" HorizontalAlignment="Left" Height="30" Margin="11,301,0,0" VerticalAlignment="Top" Width="33"/>
+        <Image x:Name="image_Copy5" Source="C:\Users\HP\Documents\visual studio 2015\Projects\Projet\Projet\rapportjournalier.png" HorizontalAlignment="Left" Height="30" Margin="11,266,0,0" VerticalAlignment="Top" Width="33"/>
+        <Rectangle x:Name="CPNNotification" Fill="Red" HorizontalAlignment="Left" Height="30" Margin="0,196,0,0" Stroke="Black" VerticalAlignment="Top" Width="254" Opacity="0.3" MouseLeftButtonDown="RapportCPN_Click"/>
+        <Image x:Name="image_Copy6" Source="C:\Users\HP\Documents\visual studio 2015\Projects\Projet\Projet\rapportcpon.png" HorizontalAlignment="Left" Height="30" Margin="11,231,0,0" VerticalAlignment="Top" Width="33"/>
+        <Rectangle Name="CPoNNotification" Fill="Red" HorizontalAlignment="Left" Height="30" Margin="0,231,0,0" Stroke="Black" VerticalAlignment="Top" Width="254" Opacity="0.3" MouseLeftButtonDown="RapportCPoN_Click"/>
+
+    </Grid>
+</Window>
